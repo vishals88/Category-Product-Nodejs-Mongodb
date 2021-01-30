@@ -1,0 +1,14 @@
+<%- include("navigation") %>
+
+<div class="container">
+    <div class="form-group">
+        <div class="row">
+            <form action="/category/<%=result._id%>?_method=put" method="POST">
+            <input type="text" class="form-control"  name="name"  value="<%=result.name%>">
+            <div class="bt">
+                <button class="btn btn-md btn-primary"> submit</button>
+            </div>
+             </form>
+       </div>
+    </div>
+</div>

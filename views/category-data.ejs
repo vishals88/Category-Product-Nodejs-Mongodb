@@ -1,0 +1,27 @@
+<%- include("navigation") %>
+
+<div class="container">
+
+    <div class="form-group">
+      <a href="/product/<%=result._id%>/product/add"   class="btn btn-primary">Insert Product</a>    </div>
+  </div>
+    <div class="container">
+      <% if (result.products.length > 0) { %>
+         <table class='table'>
+              <thead>
+                <th>Category Name</th>
+                <th>Product Name</th>
+              </thead>
+              <tbody>
+                <% for(let product of result.products) {%>
+                <tr>
+                  <td><%=result.name%> </td>
+                  <td><%=product.name%></td>
+                </tr>
+                <%}%>
+              </tbody>
+            </table>
+         <% } %>
+</div>
+</body>
+</html>

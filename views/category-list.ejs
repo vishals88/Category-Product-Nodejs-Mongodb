@@ -1,0 +1,86 @@
+<%- include("navigation") %>
+
+
+<% if (result.length > 0) { %>
+   <div class="container">
+       <div class="form-group">
+        <table class='table'>
+            <thead>
+                <th>Category Id</th>
+                <th>Category Name</th>
+          
+            </thead>
+            <tbody>
+                <% for(var i=0;i<result.length;i++){%>
+                <tr>
+                <td><%=result[i]._id%></td>
+                <td><%=result[i].name%> </a></td>
+    
+                <td>
+                <a href="/category/s/<%=result[i]._id%>"  class="btn btn-primary">Add Products</a>
+                </td>
+                <td>
+                <form action="/category/<%=result[i]._id%>/edit" method="GET" >
+                <button class="btn btn-success btn-md">Update</button>
+                </form>
+                </td>
+                <td>
+                <form action="/category/<%=result[i]._id%>?_method=delete" method="POST" >
+                <button class="btn btn-danger">Delete</button>
+                </form>
+                <%}%>
+            </tbody>
+        </table>
+    </div>
+  <%}%>
+
+<div class ="row">
+   <% if (pages > 0) { %>
+    <nav class="mx-auto">
+    <ul class="pagination text-center">
+        <% if (current == 1) { %>
+        <li class="page-item disabled">
+            <a class="page-link" href="#">First</a>
+        </li>
+        <% } else { %>
+        <li class="page-item">
+            <a class ="page-link" href="/category/1">First</a>
+        </li>
+        <% } %>
+        <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+        <% if (i !== 1) { %>
+        <li class="page-item disabled">
+            <a>...</a>
+        </li>
+        <% } %>
+        <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+            <% if (i == current) { %>
+            <li class=" page-item active">
+                <a class="page-link"><%= i %></a>
+            </li>
+            <% } else { %>
+                <li class="page-item">
+                    <a class="page-link" href="/category/<%= i %>"><%= i %></a>
+                </li>
+            <% } %>
+            <% if (i == Number(current) + 4 && i < pages) { %>
+                <li class="page-item disabled">
+                    <a>...</a></li>
+            <% } %>
+        <% } %>
+        <% if (current == pages) { %>
+            <li class="page-item disabled">
+                <a class="page-link" href="#">Last</a>
+            </li>
+        <% } else { %>
+            <li class="page-item">
+                <a class="page-link" href="/category/<%= pages %>">Last</a>
+            </li>
+        <% } %>
+    </ul>
+    </nav>
+   <% } %>
+</div>
+</div>
+</body>
+</html>
